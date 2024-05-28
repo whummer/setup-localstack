@@ -19,6 +19,11 @@ Actions:
     Configuration:
       # Required - Steps are sequential instructions that run shell commands
       Steps:
+        - name: Set up Python
+          id: setup-python
+          uses: actions/setup-python@v5
+          with:
+            python-version: "3.11"
         - name: Start LocalStack
           uses: LocalStack/setup-localstack@v0.1.2
           with:
