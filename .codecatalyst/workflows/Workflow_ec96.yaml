@@ -37,7 +37,19 @@ Actions:
             LEGACY_DOCKER_CLIENT: "1"
         - name: Run smoke tests
           run: |-
+            # create S3 bucket
             awslocal s3 mb s3://test123
             awslocal s3 ls
+
+            # create and invoke Lambda function
+            mkdir -p /tmp/python/
+            echo 'def handler(*args, **kwargs):' > /tmp/testlambda.py
+            echo '  return "Hello from LocalStack Lambda!"' >> /tmp/testlambda.py
+            (cd /tmp; zip testlambda.zip testlambda.py)
+            awslocal lambda create-function --function-name func1 --runtime python3.9 --role arn:aws:iam::000000000000:role/r1 --handler testlambda.handler --timeout 30 --zip-file fileb:///tmp/testlambda.zip
+            funcArn=$(awslocal lambda get-function --function-name func1 | jq -r .Configuration.FunctionArn)
+            awslocal lambda wait function-active-v2 --function-name func1
+            awslocal lambda invoke --function-name func1 /tmp/tmp.out
+            cat /tmp/tmp.out
     Compute:
       Type: EC2
