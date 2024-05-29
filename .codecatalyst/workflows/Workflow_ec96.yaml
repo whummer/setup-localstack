@@ -52,6 +52,7 @@ Actions:
             awslocal lambda list-functions
             docker ps
             docker inspect localstack-main
+            chmod 777 /var/run/docker.sock || true
             ls -la /var/run/docker.sock || true
             localstack logs
 
