@@ -22,8 +22,11 @@ Actions:
         - name: Set up Python
           run: |-
             # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
             #
-            python-version: "3.11"
+            # python-version: "3.11"
+            #python-version: "3.11"
             python --version
             which python
             which yum || true
@@ -39,4 +42,4 @@ Actions:
           env:
             LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
     Compute:
-      Type: EC2
+      Type: EC2 # TODO: tmp debugging
