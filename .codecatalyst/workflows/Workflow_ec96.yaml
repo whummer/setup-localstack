@@ -51,6 +51,8 @@ Actions:
             # TODO: tmp debug output
             awslocal lambda list-functions
             docker ps
+            docker inspect localstack-main
+            ls -la /var/run/docker.sock || true
             localstack logs
 
             # invoke Lambda function
