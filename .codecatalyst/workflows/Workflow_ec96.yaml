@@ -21,6 +21,10 @@ Actions:
     Configuration:
       # Required - Steps are sequential instructions that run shell commands
       Steps:
+        - name: Set up environment
+          run: |
+            chmod 777 /var/run/docker.sock || true
+
         - name: Start LocalStack
           uses: LocalStack/setup-localstack@v0.1.2
           with:
@@ -52,7 +56,6 @@ Actions:
             awslocal lambda list-functions
             docker ps
             docker inspect localstack-main
-            chmod 777 /var/run/docker.sock || true
             ls -la /var/run/docker.sock || true
             localstack logs
 
