@@ -24,6 +24,7 @@ Actions:
         - name: Set up environment
           run: |
             chmod 777 /var/run/docker.sock || true
+            python -c 'import docker; print(docker.__file__)'
 
         - name: Start LocalStack
           uses: LocalStack/setup-localstack@v0.1.2
@@ -34,7 +35,6 @@ Actions:
             use-pro: "true"
           env:
             LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
-            LEGACY_DOCKER_CLIENT: "1"
         - name: Run smoke tests
           run: |-
             yum -y install zip
