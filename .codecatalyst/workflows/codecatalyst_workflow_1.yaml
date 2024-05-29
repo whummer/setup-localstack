@@ -20,10 +20,15 @@ Actions:
       # Required - Steps are sequential instructions that run shell commands
       Steps:
         - name: Set up Python
-          id: setup-python
-          uses: actions/setup-python@v5
-          with:
+          run: |-
+            # TODO: tmp debugging
+            #
             python-version: "3.11"
+            python --version
+            which python
+            which yum || true
+            which apt || true
+            cat /etc/issue
         - name: Start LocalStack
           uses: LocalStack/setup-localstack@v0.1.2
           with:
