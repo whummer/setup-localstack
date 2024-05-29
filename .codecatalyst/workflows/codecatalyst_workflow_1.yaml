@@ -19,19 +19,137 @@ Actions:
     Configuration:
       # Required - Steps are sequential instructions that run shell commands
       Steps:
-        - name: Set up Python
+        - name: Set up LocalStack CLI
           run: |-
             # TODO: tmp debugging
             # TODO: tmp debugging
             # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            # TODO: tmp debugging
+            #
+            #
+            #
+            #
+            #
+            #
+            #
+            #
+            #
+            #
+            #
+            #
+            #
+            #
+            #
+            #
+            #
+            #
+            #
             #
             # python-version: "3.11"
+            # python-version: "3.11"
+            # python-version: "3.11"
+            # python-version: "3.11"
+            # python-version: "3.11"
+            # python-version: "3.11"
+            # python-version: "3.11"
+            # python-version: "3.11"
+            # python-version: "3.11"
+            # python-version: "3.11"
+            # python-version: "3.11"
+            # python-version: "3.11"
+            # python-version: "3.11"
+            # python-version: "3.11"
+            # python-version: "3.11"
+            # python-version: "3.11"
+            # python-version: "3.11"
+            # python-version: "3.11"
+            # python-version: "3.11"
+            # python-version: "3.11"
+            #python-version: "3.11"
+            #python-version: "3.11"
+            #python-version: "3.11"
+            #python-version: "3.11"
+            #python-version: "3.11"
+            #python-version: "3.11"
+            #python-version: "3.11"
+            #python-version: "3.11"
+            #python-version: "3.11"
+            #python-version: "3.11"
+            #python-version: "3.11"
+            #python-version: "3.11"
+            #python-version: "3.11"
+            #python-version: "3.11"
+            #python-version: "3.11"
+            #python-version: "3.11"
+            #python-version: "3.11"
+            #python-version: "3.11"
+            #python-version: "3.11"
             #python-version: "3.11"
             python --version
             which python
+            which python3 || true
             which yum || true
             which apt || true
             cat /etc/issue
+            pip install localstack
+            which localstack
+            python -c 'import localstack; print(localstack.__file__)' || true
         - name: Start LocalStack
           uses: LocalStack/setup-localstack@v0.1.2
           with:
