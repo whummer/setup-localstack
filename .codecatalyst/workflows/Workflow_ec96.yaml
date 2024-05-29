@@ -1,25 +1,18 @@
 Name: Workflow_ec96
 SchemaVersion: "1.0"
 
-# Optional - Set automatic triggers.
 Triggers:
   - Type: Push
     Branches:
       - main
 
-# Required - Define action configurations.
 Actions:
   GitHubActions_c6:
-    # Identifies the action. Do not modify this value.
     Identifier: aws/github-actions-runner@v1.0.0
-    # Specifies the source and/or artifacts to pass to the action as input.
     Inputs:
-      # Optional
       Sources:
-        - WorkflowSource # This specifies that the action requires this Workflow as a source
-    # Defines the action's properties.
+        - WorkflowSource
     Configuration:
-      # Required - Steps are sequential instructions that run shell commands
       Steps:
         - name: Set up environment
           run: |
@@ -36,34 +29,28 @@ Actions:
             use-pro: "true"
           env:
             LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
+
         - name: Run smoke tests
           run: |-
             yum -y install zip
 
-            # create S3 bucket
+            # create local S3 bucket
             awslocal s3 mb s3://test123
             awslocal s3 ls
 
-            # create and invoke Lambda function
+            # create local Lambda function
             mkdir -p /tmp/python/
             echo 'def handler(*args, **kwargs):' > /tmp/testlambda.py
             echo '  return "Hello from LocalStack Lambda!"' >> /tmp/testlambda.py
             (cd /tmp; zip testlambda.zip testlambda.py)
-            awslocal lambda create-function --function-name func1 --runtime python3.9 --role arn:aws:iam::000000000000:role/r1 --handler testlambda.handler --timeout 30 --zip-file fileb:///tmp/testlambda.zip
+            awslocal lambda create-function --function-name func1 --runtime python3.9 --role arn:aws:iam::000000000000:role/r1 \
+                --handler testlambda.handler --timeout 30 --zip-file fileb:///tmp/testlambda.zip
             funcArn=$(awslocal lambda get-function --function-name func1 | jq -r .Configuration.FunctionArn)
             awslocal lambda wait function-active-v2 --function-name func1 || true
-
-            # TODO: tmp debug output
-            awslocal lambda list-functions
-            docker ps
-            docker inspect localstack-main
-            ls -la /var/run/docker.sock || true
-            localstack logs
 
             # invoke Lambda function
             awslocal lambda invoke --function-name func1 /tmp/tmp.out
             cat /tmp/tmp.out
-            
             
     Compute:
       Type: EC2
