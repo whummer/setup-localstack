@@ -24,7 +24,8 @@ Actions:
         - name: Set up environment
           run: |
             chmod 777 /var/run/docker.sock || true
-            python -c 'import docker; print(docker.__file__)'
+            # note: removing docker pip package, to force use of the Docker cmd client (otherwise fails on Python 3.9)
+            mv /root/.pyenv/versions/3.9.15/lib/python3.9/site-packages/docker /root/.pyenv/versions/3.9.15/lib/python3.9/site-packages/docker.bk
 
         - name: Start LocalStack
           uses: LocalStack/setup-localstack@v0.1.2
